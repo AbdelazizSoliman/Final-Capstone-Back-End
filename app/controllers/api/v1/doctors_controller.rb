@@ -1,6 +1,6 @@
 class Api::V1::DoctorsController < ApplicationController
-     before_action :set_doctor, only: [:show, :update, :destroy]
-     # GET /doctors
+  before_action :set_doctor, only: %i[show update destroy]
+  # GET /doctors
   def index
     @doctors = Doctor.all
 
