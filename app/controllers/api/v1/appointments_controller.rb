@@ -15,7 +15,7 @@ class Api::V1::AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.new(appointment_params)
 
-     if @appointment.save
+    if @appointment.save
       render json: @appointment, status: :created
     else
       render json: { errors: @appointment.errors.full_messages, status: 'Failed' }, status: :unprocessable_entity
@@ -24,7 +24,7 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # PATCH/PUT /appointments/1
   def update
-     @appointment = Appointments.find(params[:id])
+    @appointment = Appointments.find(params[:id])
     if @appointment.update(appointment_params)
       render json: { result: 'Appointment updated successfully' }
     else
@@ -35,7 +35,7 @@ class Api::V1::AppointmentsController < ApplicationController
   # DELETE /appointments/1
   def destroy
     @appointment = Appointments.find(params[:id])
-     if @appointment.destroy
+    if @appointment.destroy
       render json: { data: 'Appointment deleted successfully', status: 'Success' }, status: :ok
     else
       render json: { data: 'Something went wrong', status: 'Failed' }
