@@ -38,11 +38,11 @@ class Api::V1::PatientsController < ApplicationController
     @patient.destroy
   end
 
-    # GET /users/1/appointments
-    def appointments
-      @appointments = current_patient.appointments
-      render json: @appointments
-    end
+  # GET /users/1/appointments
+  def appointments
+    @appointments = current_patient.appointments
+    render json: @appointments
+  end
 
   private
 
