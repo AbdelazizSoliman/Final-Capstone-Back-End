@@ -3,38 +3,43 @@ class Api::V1::AppointmentsController < ApplicationController
   # GET /appointments
   def index
     @appointments = Appointment.all
-
     render json: @appointments
   end
 
   # GET /appointments/1
   def show
-    render json: @appointment
+    render json: @appointment, status: :ok
   end
 
   # POST /appointments
   def create
     @appointment = Appointment.new(appointment_params)
 
-    if @appointment.save
+     if @appointment.save
       render json: @appointment, status: :created
     else
-      render json: @appointment.errors, status: :unprocessable_entity
+      render json: { errors: @appointment.errors.full_messages, status: 'Failed' }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /appointments/1
   def update
+     @appointment = Appointments.find(params[:id])
     if @appointment.update(appointment_params)
-      render json: @appointment
+      render json: { result: 'Appointment updated successfully' }
     else
-      render json: @appointment.errors, status: :unprocessable_entity
+      render json: { errors: @appointment.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   # DELETE /appointments/1
   def destroy
-    @appointment.destroy
+    @appointment = Appointments.find(params[:id])
+     if @appointment.destroy
+      render json: { data: 'Appointment deleted successfully', status: 'Success' }, status: :ok
+    else
+      render json: { data: 'Something went wrong', status: 'Failed' }
+    end
   end
 
   private

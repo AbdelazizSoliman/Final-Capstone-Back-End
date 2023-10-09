@@ -86,6 +86,8 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
     erubi (1.12.0)
+    faker (3.2.1)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -230,6 +232,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise
+  faker
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
@@ -239,7 +242,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.1.3p185
 
 BUNDLED WITH
    2.4.19
