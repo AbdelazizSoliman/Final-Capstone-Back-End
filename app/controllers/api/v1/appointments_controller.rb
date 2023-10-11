@@ -1,19 +1,21 @@
 class Api::V1::AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[show update destroy]
+  # before_action :authenticate_patient!
+
   # GET /appointments
   def index
-    @appointments = Appointment.all
+    @appointments = current_user.appointments.includes(doctor: :specialization).all
     render json: @appointments
   end
 
   # GET /appointments/1
   def show
-    render json: @appointment, status: :ok
+    render json: @appointment
   end
 
   # POST /appointments
   def create
-    @appointment = Appointment.new(appointment_params)
+    @appointment = current_user.appointments.build(appointment_params)
 
     if @appointment.save
       render json: @appointment, status: :created
@@ -26,7 +28,7 @@ class Api::V1::AppointmentsController < ApplicationController
   def update
     @appointment = Appointments.find(params[:id])
     if @appointment.update(appointment_params)
-      render json: { result: 'Appointment updated successfully' }
+      render json: @appointment, status: :ok
     else
       render json: { errors: @appointment.errors.full_messages }, status: :unprocessable_entity
     end
@@ -34,7 +36,6 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # DELETE /appointments/1
   def destroy
-    @appointment = Appointments.find(params[:id])
     if @appointment.destroy
       render json: { data: 'Appointment deleted successfully', status: 'Success' }, status: :ok
     else
