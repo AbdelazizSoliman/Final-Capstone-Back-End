@@ -96,7 +96,12 @@ GEM
     irb (1.8.1)
       rdoc
       reline (>= 0.3.8)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     json (2.6.3)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     language_server-protocol (3.17.0.3)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -129,7 +134,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.4-x64-mingw-ucrt)
-    psych (5.1.0)
+    psych (4.0.6)
       stringio
     puma (5.6.7)
       nio4r (~> 2.0)
@@ -233,7 +238,10 @@ DEPENDENCIES
   debug
   devise
   faker
+  jbuilder
+  jsonapi-serializer
   pg (~> 1.1)
+  psych (~> 4.0)
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.8)
@@ -242,7 +250,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.19

@@ -5,4 +5,10 @@ class Patient < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :appointments
+
+  enum role: { patient: 'patient', admin: 'admin' }
+
+  def admin?
+    role.to_sym == :admin
+  end
 end

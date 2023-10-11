@@ -1,13 +1,20 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.3'
+ruby '3.2.2'
 
+# Authentication [https://github.com/heartcombo/devise#getting-started]
 gem 'devise'
+gem 'jsonapi-serializer'
 
 gem 'faker'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
+
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem 'jbuilder'
+
+gem 'psych', '~> 4.0'
 
 gem 'rack-cors'
 
