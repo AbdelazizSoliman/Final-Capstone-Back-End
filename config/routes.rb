@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :patients
- 
- namespace :api do
-    namespace :v1, defaults: { format: 'json' } do
-      resources :doctors, only: [:index, :show, :new, :create, :destroy] 
-      resources :appointments, only: [:index, :show, :new, :create, :destroy]
+  devise_for :patient
+
+  namespace :api do
+    namespace :v1 do
+      resources :appointments, only: [:index, :show, :create, :update, :destroy]
+      resources :doctors, only: [:index, :show, :create, :destroy]
       resources :specializations, only: [:index, :create]
     end
   end
