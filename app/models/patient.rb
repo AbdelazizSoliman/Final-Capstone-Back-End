@@ -7,7 +7,7 @@ class Patient < ApplicationRecord
   has_many :appointments
 
   enum role: { patient: 'patient', admin: 'admin' }
-  
+
   def admin?
     role.to_sym == :admin
   end

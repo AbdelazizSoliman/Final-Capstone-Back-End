@@ -60,15 +60,16 @@ class Api::V1::DoctorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def doctor_params
-    params.require(:doctor).permit(:name, :specialization, :picture, :price, :phone_number, :time_start, :time_end, @specialization.id)
+    params.require(:doctor).permit(:name, :specialization, :picture, :price, :phone_number, :time_start, :time_end,
+                                   @specialization.id)
   end
 
   def authorize_admin
     patient = current_patient
     patient_json = PatientSerializer.new(patient).as_json
     puts "Serialized Patient JSON: #{patient_json}"
-    unless current_patient && current_patient.role == 'admin'
-      render json: { error: 'Only admins can create doctors' }, status: :unauthorized
-    end
+    return if current_patient && current_patient.role == 'admin'
+
+    render json: { error: 'Only admins can create doctors' }, status: :unauthorized
   end
 end
