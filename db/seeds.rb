@@ -50,10 +50,10 @@ begin
 
     Specialization.create!(specializations)
 
-    doctors = Array.new(20) do
-     {
-      name: Faker::Date.between(from: '2023-01-01', to: '2023-12-31'),
-      specialization: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+    doctors = Array.new(20) do |index|
+    {
+      name: Faker::Name.name + ' (MD) ' + index.to_s,
+      specialization:  specializations[prng.rand(1..20)]['name'],
       picture: 'https://picsum.photos/200/300',
       phone_number: Faker::PhoneNumber.cell_phone,
       time_start: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
@@ -61,7 +61,8 @@ begin
       specialization_id: Specialization.all.sample.id
     }
     end
-     Doctor.create(doctors)
+
+    Doctor.create(doctors)
     
      appointments = Array.new(20) do
      {
