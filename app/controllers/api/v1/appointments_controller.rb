@@ -40,7 +40,6 @@ class Api::V1::AppointmentsController < ApplicationController
     # @appointment = current_user.appointments.build(appointment_params)
     @appointment = Appointment.new(appointment_params)
 
-
     if @appointment.save
       render json: @appointment, status: :created
     else
