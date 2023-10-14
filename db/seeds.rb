@@ -64,16 +64,23 @@ begin
 
     Doctor.create(doctors)
     
-     appointments = Array.new(20) do
-     {
-      date_of_appointment: Faker::Date.between(from: '2023-01-01', to: '2023-12-31'),
-      time_of_appointment: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-      city: Faker::Address.city,
-      doctor_id: prng.rand(1..20),
-      patient_id: prng.rand(1..20)      
-     }
-     end
-     Appointment.create(appointments)
+     20.times do
+      appointment = Appointment.new(
+        date_of_appointment: Faker::Date.between(from: '2023-01-01', to: '2023-12-31'),
+        time_of_appointment: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now).strftime('%H:%M:%S'),
+        city: Faker::Address.city,
+        doctor: Doctor.all.sample,   # Randomly select a doctor
+        patient: Patient.all.sample  # Randomly select a patient
+      )
+    
+      # Check if the appointment is valid and save it
+      if appointment.valid?
+        appointment.save
+      else
+        puts "Validation error occurred: #{appointment.errors.full_messages.join(', ')}"
+      end
+    end
+    
 
      
   puts "Data Seeded."
