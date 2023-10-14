@@ -11,7 +11,8 @@ class Api::V1::AppointmentsController < ApplicationController
         date_of_appointment: appointment.date_of_appointment,
         time_of_appointment: appointment.time_of_appointment,
         city: appointment.city,
-        doctor_name: appointment.doctor.name
+        doctor_name: appointment.doctor.name,
+        patient_name: appointment.patient.name
       }
     end
   
@@ -19,10 +20,11 @@ class Api::V1::AppointmentsController < ApplicationController
   end
   
 
-  def doctors
-    sql_query = "SELECT appointments.id, appointments.date_of_appointment, appointments.time_of_appointment, appointments.city, doctors.name AS doctor_name
+  def doctors_patients
+    sql_query = "SELECT appointments.id, appointments.date_of_appointment, appointments.time_of_appointment, appointments.city, doctors.name AS doctor_name, patients.name AS patient_name
                  FROM appointments
-                 JOIN doctors ON appointments.doctor_id = doctors.id"
+                 JOIN doctors ON appointments.doctor_id = doctors.id
+                 JOIN patients ON appointments.patient_id = patients.id"
     
     @results = ActiveRecord::Base.connection.execute(sql_query)
     render json: @results
