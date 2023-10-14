@@ -72,6 +72,7 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    coderay (1.1.3)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
@@ -134,6 +135,9 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.4-x64-mingw-ucrt)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     psych (4.0.6)
       stringio
     puma (5.6.7)
@@ -241,6 +245,7 @@ DEPENDENCIES
   jbuilder
   jsonapi-serializer
   pg (~> 1.1)
+  pry
   psych (~> 4.0)
   puma (~> 5.0)
   rack-cors
@@ -250,7 +255,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.1.3p185
 
 BUNDLED WITH
    2.4.19
