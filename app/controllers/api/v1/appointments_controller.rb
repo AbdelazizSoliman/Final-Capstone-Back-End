@@ -4,11 +4,30 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    # @appointments = current_user.appointments.includes(doctor: :specialization).all
     @appointments = Appointment.includes(doctor: :specialization).all
-    render json: @appointments
+    appointment_data = @appointments.map do |appointment|
+      {
+        id: appointment.id,
+        date_of_appointment: appointment.date_of_appointment,
+        time_of_appointment: appointment.time_of_appointment,
+        city: appointment.city,
+        doctor_name: appointment.doctor.name
+      }
+    end
+  
+    render json: appointment_data
   end
+  
 
+  def doctors
+    sql_query = "SELECT appointments.id, appointments.date_of_appointment, appointments.time_of_appointment, appointments.city, doctors.name AS doctor_name
+                 FROM appointments
+                 JOIN doctors ON appointments.doctor_id = doctors.id"
+    
+    @results = ActiveRecord::Base.connection.execute(sql_query)
+    render json: @results
+  end
+  
   # GET /appointments/1
   def show
     render json: @appointment
@@ -16,7 +35,9 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
-    @appointment = current_user.appointments.build(appointment_params)
+    # @appointment = current_user.appointments.build(appointment_params)
+    @appointment = Appointment.new(appointment_params)
+
 
     if @appointment.save
       render json: @appointment, status: :created
@@ -53,6 +74,6 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def appointment_params
-    params.require(:appointment).permit(:date_of_appointment, :time_of_appointment, :patient_id, :doctor_id, :city)
-  end
+    params.require(:appointment).permit(:date_of_appointment, :time_of_appointment, :city, :doctor_id, :patient_id)
+    end
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :patient
-
+  get '/api/appointments', to: 'appointments#doctors'
   namespace :api do
     namespace :v1 do
       resources :appointments, only: [:index, :show, :create, :update, :destroy]
