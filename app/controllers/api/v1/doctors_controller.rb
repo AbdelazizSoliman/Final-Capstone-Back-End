@@ -1,32 +1,28 @@
 require 'pry'
 class Api::V1::DoctorsController < ApplicationController
-  before_action :set_doctor, only: %i[show update destroy]
+  #before_action :set_doctor, only: %i[show update destroy]
   # before_action :authenticate_patient!
   # before_action :authorize_admin, only: [:create, :destroy]
 
   # GET /doctors
   def index
-    @doctors = Doctor.all.includes(:appointments)
+    @doctors = Doctor.all.includes(:appointments, :specialization)
 
     render json: @doctors
   end
 
   # GET /doctors/1
   def show
-    @doctors = Doctor.all
+    @doctors = Doctor.all.includes(:specialization)
     render json: @doctor
   end
 
   # POST /doctors
   def create
-    specialization = Specialization.find_by(id: params[:specialization_id].to_i)
 
     @doctor = Doctor.new(doctor_params)
 
-    @doctor.specialization = specialization
-
-    if @doctor.save
-      handle_uploaded_picture_file if doctor_params[:picture].present?
+    if @doctor.save   
 
       render json: @doctor, status: :created
     else
@@ -68,15 +64,6 @@ class Api::V1::DoctorsController < ApplicationController
   def doctor_params
     params.require(:doctor).permit(:name, :specialization, :picture, :price, :phone_number, :time_start, :time_end,
                                    :specialization_id)
-  end
-
-  def handle_uploaded_picture_file
-    # uploaded_file = doctor_params[:picture]
-    # file_path = Rails.root.join('app/assets', 'images', uploaded_file)
-
-    # File.binwrite(file_path, uploaded_file.read)
-
-    # @doctor.update(picture: File.join('/uploads', uploaded_file))
   end
 
   def authorize_admin

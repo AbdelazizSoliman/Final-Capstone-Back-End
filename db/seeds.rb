@@ -52,8 +52,7 @@ begin
 
     doctors = Array.new(20) do |index|
     {
-      name: Faker::Name.name + ' (MD) ' + index.to_s,
-      specialization:  specializations[prng.rand(1..20)]['name'],
+      name: Faker::Name.name + ' (MD) ' + index.to_s,    
       picture: 'https://picsum.photos/200/300',
       phone_number: Faker::PhoneNumber.cell_phone,
       time_start: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
