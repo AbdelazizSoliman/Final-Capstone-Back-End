@@ -1,4 +1,3 @@
-require 'pry'
 class Api::V1::DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[show update destroy]
   # before_action :authenticate_patient!
@@ -19,11 +18,11 @@ class Api::V1::DoctorsController < ApplicationController
 
   # POST /doctors
   def create
-    specialization = Specialization.find_by(id: params[:specialization_id].to_i)
+    @specialization = Specialization.find_by(id: params[:specialization_id].to_i)
 
     @doctor = Doctor.new(doctor_params)
 
-    @doctor.specialization = specialization
+    @doctor.specialization = @specialization
 
     if @doctor.save
       handle_uploaded_picture_file if doctor_params[:picture].present?
