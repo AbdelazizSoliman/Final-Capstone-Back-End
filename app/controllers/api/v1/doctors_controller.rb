@@ -1,4 +1,3 @@
-require 'pry'
 class Api::V1::DoctorsController < ApplicationController
   #before_action :set_doctor, only: %i[show update destroy]
   # before_action :authenticate_patient!
@@ -19,9 +18,10 @@ class Api::V1::DoctorsController < ApplicationController
 
   # POST /doctors
   def create
+
     @doctor = Doctor.new(doctor_params)
     
-    if @doctor.save  
+    if @doctor.save
 
       render json: @doctor, status: :created
     else
