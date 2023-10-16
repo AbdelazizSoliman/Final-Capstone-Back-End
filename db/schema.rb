@@ -28,7 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_07_132342) do
 
   create_table "doctors", force: :cascade do |t|
     t.string "name"
-    t.string "specialization"
     t.string "picture"
     t.decimal "price"
     t.integer "phone_number"
