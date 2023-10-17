@@ -1,5 +1,5 @@
 class Api::V1::DoctorsController < ApplicationController
-  # before_action :set_doctor, only: %i[show update destroy]
+  before_action :set_doctor, only: %i[show update destroy]
   # before_action :authenticate_patient!
   # before_action :authorize_admin, only: [:create, :destroy]
 
@@ -21,8 +21,8 @@ class Api::V1::DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
 
     if @doctor.save
-
-      render json: @doctor, status: :created
+    index
+      # render json: @doctor, status: :created
     else
       render json: @doctor.errors, status: :unprocessable_entity
     end
@@ -60,7 +60,7 @@ class Api::V1::DoctorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def doctor_params
-    params.require(:doctor).permit(:name, :specialization, :picture, :price, :phone_number, :time_start, :time_end,
+    params.require(:doctor).permit(:name, :picture, :price, :phone_number, :time_start, :time_end,
                                    :specialization_id)
   end
 
