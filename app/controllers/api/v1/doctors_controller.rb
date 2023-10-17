@@ -1,3 +1,4 @@
+require 'pry'
 class Api::V1::DoctorsController < ApplicationController
   # before_action :set_doctor, only: %i[show update destroy]
   # before_action :authenticate_patient!
@@ -12,7 +13,10 @@ class Api::V1::DoctorsController < ApplicationController
 
   # GET /doctors/1
   def show
-    @doctors = Doctor.all.includes(:specialization)
+    # @doctor = Doctor.includes(:specialization).where(doctors: {id: params[:id]})
+    @doctor = Doctor.joins(:specialization)
+      .select('doctors.*', 'specializations.name AS specialization_name')
+      .find_by(id: params[:id])
     render json: @doctor
   end
 
@@ -52,11 +56,6 @@ class Api::V1::DoctorsController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_doctor
-    @doctor = Doctor.find(params[:id])
-  end
 
   # Only allow a list of trusted parameters through.
   def doctor_params
