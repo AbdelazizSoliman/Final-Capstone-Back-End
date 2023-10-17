@@ -21,7 +21,7 @@ class Api::V1::DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
 
     if @doctor.save
-    index
+      index
       # render json: @doctor, status: :created
     else
       render json: @doctor.errors, status: :unprocessable_entity
