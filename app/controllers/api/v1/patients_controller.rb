@@ -1,5 +1,6 @@
 class Api::V1::PatientsController < ApplicationController
-  before_action :set_patient, only: %i[show update destroy]
+ 
+  # before_action :set_patient, only: %i[show update destroy]
   # before_action :authenticate_patient!, except: [:index, :show, :create]
 
   # GET /patient
@@ -19,11 +20,30 @@ class Api::V1::PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
 
     if @patient.save
-      render json: @patient, status: :created
+      # render json: @patient, status: :created
+      if @patient.valid?
+        token = encode_token({ patient_id: @patient.id })
+        render json: { patient: @patient, token: token }, status:  '200 OK'
+      else
+        render json: { error: 'failed to create patient' }, status: :unprocessable_entity
+      end
+      
     else
       render json: @patient.errors, status: :unprocessable_entity
     end
   end
+
+  # PATCH/PUT /patients/1
+  def login
+    patient = Patient.find_by(username: patient_params[:username])
+    if patient
+      token = encode_token({ patient_id: patient.id })
+      render json: { token: token }, status:  '200 OK'
+    else
+      render json: { error: 'failed to create patient' }, status: :unprocessable_entity
+    end
+  end
+
 
   # PATCH/PUT /patients/1
   def update
@@ -39,7 +59,7 @@ class Api::V1::PatientsController < ApplicationController
     @patient.destroy
   end
 
-  # GET /users/1/appointments
+  # GET /patients/1/appointments
   def appointments
     @appointments = current_patient.appointments
     render json: @appointments
@@ -54,6 +74,6 @@ class Api::V1::PatientsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def patient_params
-    params.permit(:name)
+    params.permit(:username, :email, :password, :password_confirmation)
   end
 end
