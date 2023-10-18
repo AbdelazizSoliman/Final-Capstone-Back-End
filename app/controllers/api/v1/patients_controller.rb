@@ -1,5 +1,4 @@
 class Api::V1::PatientsController < ApplicationController
- 
   # before_action :set_patient, only: %i[show update destroy]
   # before_action :authenticate_patient!, except: [:index, :show, :create]
 
@@ -23,11 +22,11 @@ class Api::V1::PatientsController < ApplicationController
       # render json: @patient, status: :created
       if @patient.valid?
         token = encode_token({ patient_id: @patient.id })
-        render json: { patient: @patient, token: token }, status:  '200 OK'
+        render json: { patient: @patient, token: }, status: '200 OK'
       else
         render json: { error: 'failed to create patient' }, status: :unprocessable_entity
       end
-      
+
     else
       render json: @patient.errors, status: :unprocessable_entity
     end
@@ -38,12 +37,11 @@ class Api::V1::PatientsController < ApplicationController
     patient = Patient.find_by(username: patient_params[:username])
     if patient
       token = encode_token({ patient_id: patient.id })
-      render json: { token: token }, status:  '200 OK'
+      render json: { token: }, status: '200 OK'
     else
       render json: { error: 'failed to create patient' }, status: :unprocessable_entity
     end
   end
-
 
   # PATCH/PUT /patients/1
   def update

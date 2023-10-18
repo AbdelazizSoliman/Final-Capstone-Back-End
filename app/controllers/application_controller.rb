@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::API
-    
   # before_action :configure_devise_params, if: :devise_controller?
   def encode_token(payload)
-      JWT.encode(payload, 'secret')
+    JWT.encode(payload, 'secret')
   end
 
   # def configure_devise_params
