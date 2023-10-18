@@ -11,9 +11,9 @@ begin
 
     patients = Array.new(20) do
     {
-      name: Faker::Name.name,
+      username: Faker::Name.username,
       email: Faker::Internet.email,     
-      password: "password"
+      password: "password"     
     }
     end
 

@@ -5,7 +5,6 @@ ruby '3.1.3'
 
 # Authentication [https://github.com/heartcombo/devise#getting-started]
 gem 'devise'
-gem 'jsonapi-serializer'
 
 gem 'faker'
 
@@ -13,8 +12,7 @@ gem 'pry'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem 'jbuilder'
+gem 'jwt'
 
 gem 'psych', '~> 4.0'
 

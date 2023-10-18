@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :doctors, only: [:index, :show, :create, :destroy]
       resources :specializations, only: [:index, :create]
       resources :patients, only: [:index, :create]
+       post '/patients/login', to: 'patients#login'
     end
   end
 end
