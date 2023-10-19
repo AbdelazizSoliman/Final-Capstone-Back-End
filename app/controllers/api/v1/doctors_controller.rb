@@ -1,6 +1,6 @@
 require 'pry'
 class Api::V1::DoctorsController < ApplicationController
-  before_action :set_doctor, only: %i[show update destroy]
+  # before_action :set_doctor, only: %i[show update destroy]
   # before_action :authenticate_patient!
   # before_action :authorize_admin, only: [:create, :destroy]
 
