@@ -36,10 +36,10 @@ class Api::V1::PatientsController < ApplicationController
   def login
     patient = Patient.find_by(username: patient_params[:username])
     if patient
-     
+
       token = encode_token({ patient_id: patient.id })
       response.headers['Authorization'] = "Bearer #{token}"
-      render json: { user: patient } , status: '200 OK'
+      render json: { user: patient }, status: '200 OK'
     else
       render json: { error: 'failed to create patient' }, status: :unprocessable_entity
     end
