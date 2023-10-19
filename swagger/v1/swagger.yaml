@@ -1,7 +1,6 @@
 openapi: 3.0.3
 info:
-  version: 1.0.0
-  title: Healthcare API
+  title:  Book an Appointment API
   description: API for managing appointments, doctors, patients, and specializations in a healthcare system.
 
 paths:
