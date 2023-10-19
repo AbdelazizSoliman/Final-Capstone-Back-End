@@ -66,6 +66,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    addressable (2.8.5)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     base64 (0.1.1)
     bcrypt (3.1.19)
@@ -98,6 +100,8 @@ GEM
       rdoc
       reline (>= 0.3.8)
     json (2.6.3)
+    json-schema (3.0.0)
+      addressable (>= 2.8)
     jwt (2.7.1)
     language_server-protocol (3.17.0.3)
     loofah (2.21.3)
@@ -136,6 +140,7 @@ GEM
       method_source (~> 1.0)
     psych (4.0.6)
       stringio
+    public_suffix (5.0.3)
     puma (5.6.7)
       nio4r (~> 2.0)
     racc (1.7.1)
@@ -200,6 +205,16 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.12.1)
+    rswag-api (2.11.0)
+      railties (>= 3.1, < 7.2)
+    rswag-specs (2.11.0)
+      activesupport (>= 3.1, < 7.2)
+      json-schema (>= 2.2, < 4.0)
+      railties (>= 3.1, < 7.2)
+      rspec-core (>= 2.14)
+    rswag-ui (2.11.0)
+      actionpack (>= 3.1, < 7.2)
+      railties (>= 3.1, < 7.2)
     rubocop (1.56.4)
       base64 (~> 0.1.1)
       json (~> 2.3)
@@ -234,7 +249,6 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
-  bcrypt
   bootsnap
   debug
   devise
@@ -247,11 +261,14 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.8)
   rspec-rails (~> 5.0)
+  rswag-api
+  rswag-specs
+  rswag-ui
   rubocop (>= 1.0, < 2.0)
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.19
