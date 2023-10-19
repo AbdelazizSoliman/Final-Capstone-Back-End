@@ -12,7 +12,7 @@ class Api::V1::AppointmentsController < ApplicationController
         time_of_appointment: appointment.time_of_appointment,
         city: appointment.city,
         doctor_name: appointment.doctor.name,
-        patient_name: appointment.patient.name
+        patient_name: appointment.patient.username
       }
     end
 
@@ -21,7 +21,7 @@ class Api::V1::AppointmentsController < ApplicationController
 
   def doctors_patients
     sql_query = "SELECT appointments.id, appointments.date_of_appointment, appointments.time_of_appointment,
-                appointments.city, doctors.name AS doctor_name, patients.name AS patient_name
+                appointments.city, doctors.name AS doctor_name, patients.username AS patient_name
                  FROM appointments
                  JOIN doctors ON appointments.doctor_id = doctors.id
                  JOIN patients ON appointments.patient_id = patients.id"
