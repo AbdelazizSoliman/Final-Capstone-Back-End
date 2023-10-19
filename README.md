@@ -113,7 +113,7 @@ rspec
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-The project was hosted on render and is live [here]().
+    Under deployment.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
