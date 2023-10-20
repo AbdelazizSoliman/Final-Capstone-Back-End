@@ -1,0 +1,325 @@
+openapi: 3.0.3
+info:
+  title:  Book an Appointment API
+  description: API for managing appointments, doctors, patients, and specializations in a healthcare system.
+
+paths:
+ 
+  /api/v1/appointments:
+    get:
+      summary: Get a list of appointments
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+    post:
+      summary: Create a new appointment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '201':
+          description: Appointment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+  /api/v1/appointments/{id}:
+    get:
+      summary: Get appointment details by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Appointment ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '404':
+          description: Appointment not found
+
+  /api/v1/doctors:
+    get:
+      summary: Get a list of doctors
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Doctor'
+    post:
+      summary: Create a new doctor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Doctor'
+      responses:
+        '201':
+          description: Doctor created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Doctor'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+  /api/v1/doctors/{id}:
+    get:
+      summary: Get doctor details by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Doctor ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Doctor'
+        '404':
+          description: Doctor not found
+   
+    delete:
+      summary: Delete a doctor by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Doctor ID
+      responses:
+        '200':
+          description: Doctor deleted successfully
+        '404':
+          description: Doctor not found
+  /api/v1/patients:
+    get:
+      summary: Get a list of patients
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Patient'
+    post:
+      summary: Create a new patient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '201':
+          description: Patient created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+  /api/v1/patients/{id}:
+    get:
+      summary: Get patient details by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Patient ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '404':
+          description: Patient not found
+    
+  /api/v1/specializations:
+    get:
+      summary: Get a list of specializations
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Specialization'
+    post:
+      summary: Create a new specialization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Specialization'
+      responses:
+        '201':
+          description: Specialization created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Specialization'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+  /api/v1/specializations/{id}:
+    get:
+      summary: Get specialization details by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Specialization ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Specialization'
+        '404':
+          description: Specialization not found
+   
+
+components:
+  schemas:
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+        date_of_appointment:
+          type: string
+        time_of_appointment:
+          type: string
+        city:
+          type: string
+        doctor_id:
+          type: integer
+        patient_id:
+          type: integer
+
+    Doctor:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        picture:
+          type: string
+        price:
+          type: number
+        phone_number:
+          type: integer
+        time_start:
+          type: string
+        time_end:
+          type: string
+        specialization_id:
+          type: integer
+
+    Patient:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        encrypted_password:
+          type: string
+        reset_password_token:
+          type: string
+        reset_password_sent_at:
+          type: string
+        remember_created_at:
+          type: string
+        confirmation_token:
+          type: string
+        confirmed_at:
+          type: string
+        confirmation_sent_at:
+          type: string
+        unconfirmed_email:
+          type: string
+        username:
+          type: string
+
+    Specialization:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
