@@ -11,7 +11,8 @@ class Api::V1::PatientsController < ApplicationController
 
   # GET /patients/1
   def show
-    render json: @patient
+    @patients = Patient.all
+      .render json: @patients
   end
 
   # POST /patient
