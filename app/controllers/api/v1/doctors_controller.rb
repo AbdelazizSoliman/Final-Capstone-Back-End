@@ -7,7 +7,7 @@ class Api::V1::DoctorsController < ApplicationController
   # GET /doctors
   def index
     @doctors = Doctor.all.includes(:appointments, :specialization)
-     .order("doctors.created_at DESC")
+      .order('doctors.created_at DESC')
 
     render json: @doctors
   end
