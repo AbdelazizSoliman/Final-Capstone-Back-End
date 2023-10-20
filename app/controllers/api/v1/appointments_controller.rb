@@ -36,7 +36,7 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   # POST /appointments
-  def create   
+  def create
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
@@ -65,7 +65,6 @@ class Api::V1::AppointmentsController < ApplicationController
     end
   end
 
- 
   # Only allow a list of trusted parameters through.
   def appointment_params
     params.require(:appointment).permit(:date_of_appointment, :time_of_appointment, :city, :doctor_id, :patient_id)

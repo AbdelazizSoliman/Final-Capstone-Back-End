@@ -1,6 +1,5 @@
 require 'pry'
 class Api::V1::DoctorsController < ApplicationController
- 
   # GET /doctors
   def index
     @doctors = Doctor.all.includes(:appointments, :specialization)
@@ -22,7 +21,7 @@ class Api::V1::DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
 
     if @doctor.save
-      index     
+      index
     else
       render json: @doctor.errors, status: :unprocessable_entity
     end

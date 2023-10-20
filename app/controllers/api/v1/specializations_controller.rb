@@ -1,5 +1,4 @@
 class Api::V1::SpecializationsController < ApplicationController
-
   # GET api/v1/specializations
   def index
     specializations = Specialization.all

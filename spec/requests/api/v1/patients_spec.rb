@@ -7,8 +7,8 @@ RSpec.describe 'Api::V1::Patients', type: :request do
       patient_params = {
         username: 'katended',
         email: 'katende@gmail.com',
-        password: 'password',
-      
+        password: 'password'
+
       }
 
       # Send a POST request to the endpoint
@@ -16,7 +16,6 @@ RSpec.describe 'Api::V1::Patients', type: :request do
 
       # Expect a successful response (status code 201 - Created)
       expect(response).to have_http_status(422)
-      
     end
   end
 end
