@@ -36,8 +36,7 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   # POST /appointments
-  def create
-    # @appointment = current_user.appointments.build(appointment_params)
+  def create   
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
@@ -66,13 +65,7 @@ class Api::V1::AppointmentsController < ApplicationController
     end
   end
 
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_appointment
-    @appointment = Appointment.find(params[:id])
-  end
-
+ 
   # Only allow a list of trusted parameters through.
   def appointment_params
     params.require(:appointment).permit(:date_of_appointment, :time_of_appointment, :city, :doctor_id, :patient_id)

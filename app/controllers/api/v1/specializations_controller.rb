@@ -1,5 +1,4 @@
 class Api::V1::SpecializationsController < ApplicationController
-  # before_action :authenticate_patient!
 
   # GET api/v1/specializations
   def index

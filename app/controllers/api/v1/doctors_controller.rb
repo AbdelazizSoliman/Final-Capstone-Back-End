@@ -1,9 +1,6 @@
 require 'pry'
 class Api::V1::DoctorsController < ApplicationController
-  # before_action :set_doctor, only: %i[show update destroy]
-  # before_action :authenticate_patient!
-  # before_action :authorize_admin, only: [:create, :destroy]
-
+ 
   # GET /doctors
   def index
     @doctors = Doctor.all.includes(:appointments, :specialization)
@@ -14,7 +11,6 @@ class Api::V1::DoctorsController < ApplicationController
 
   # GET /doctors/1
   def show
-    # @doctor = Doctor.includes(:specialization).where(doctors: {id: params[:id]})
     @doctor = Doctor.joins(:specialization)
       .select('doctors.*', 'specializations.name AS specialization_name')
       .find_by(id: params[:id])
@@ -26,8 +22,7 @@ class Api::V1::DoctorsController < ApplicationController
     @doctor = Doctor.new(doctor_params)
 
     if @doctor.save
-      index
-      # render json: @doctor, status: :created
+      index     
     else
       render json: @doctor.errors, status: :unprocessable_entity
     end
