@@ -12,7 +12,7 @@ class Api::V1::AppointmentsController < ApplicationController
         time_of_appointment: appointment.time_of_appointment,
         city: appointment.city,
         doctor_name: appointment.doctor.name,
-        patient_name: appointment.patient.name
+        patient_name: appointment.patient.username
       }
     end
 
