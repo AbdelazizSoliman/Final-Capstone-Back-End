@@ -24,13 +24,13 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-
 ## Reserve Me A Doctor <a name="about-project"></a>
 
 This is the backend for a web application that allows users to book appointments with doctors.
 The frontend repository can be found [here](https://github.com/AbdelazizSoliman/final-capastone-front-end).
 
 ### Project kanban board <a name="kanban-board"></a>
+
 Our group consists of 5 members.
 We used [this](https://github.com/AbdelazizSoliman/Final-Capstone-Back-End/projects/1) kanban board to split tasks and track progress.
 [This](https://imgur.com/a/pCCJu7E) is the screenshot of the initial state of the kanban board.
@@ -44,57 +44,59 @@ We used [this](https://github.com/AbdelazizSoliman/Final-Capstone-Back-End/proje
 
 ### Key Features <a name="key-features"></a>
 
-- User management (signup and login)
-- Reservations management (add and remove)
-- Doctors management (add and remove)
+- The ability to sign-up a patient
+- The ability to add an appointment
+- The ability to add a doctor
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
 ### Prerequisites
 
 In order to run this project you need:
-- Ruby environment installed
-- Postgres database installed
+
+- Install Ruby
+- Install Rails
+- Install Posgresql
 
 ### Setup
 
 Clone this repository to your desired folder:
 
 ```sh
-cd my-folder
+
 git clone https://github.com/AbdelazizSoliman/final-capastone-front-end
+
+cd final-capastone-front-end
+
 ```
 
 ### Install
 
-Run `bundle install` to install all the required dependencies.
-
-### Usage
-
-To run the project:
-
-Create the database by running the following command:
+Install this project with these commands:
 
 ```sh
+cd final-capastone-front-end
+bundle install
 rails db:create
-```
-
-Load the database schema with this command:
-
-```sh
-rails db:schema:load
-```
-
-Seed the database with the following command:
-
-```sh
+rails db:migrate
 rails db:seed
 ```
 
-Start the server by running the following command:
+### Usage
+
+To run the project execute the following command:
 
 ```sh
-rails server
+rails s
+```
+
+### Tests
+
+To run the tests for models and requests, execute the following command:
+
+```sh
+rspec ./spec/models
+rspec ./spec/requests/api/v1
 ```
 
 ### API Documentation <a name="api-docs"></a>
@@ -103,6 +105,7 @@ The API documentation is available at `/api-docs`.
 Live [here](http://localhost:3000/api-docs/index.html).
 
 ### Run tests <a name="tests"></a>
+
 The RSpec testing library was used to write tests. To run them, simply run the RSpec binary:
 
 ```sh
@@ -119,7 +122,8 @@ rspec
 
 # 👥 Authors <a name="authors"></a>
 
-👤 **David-**
+👤 **David**
+
 - GitHub: [@david-Katende](https://github.com/Katended/)
 - LinkedIn: [david](https://www.linkedin.com/in/katendedavid/)
 
@@ -136,8 +140,8 @@ rspec
 - GitHub: [@Otman](https://github.com/otmaneechchafyky)
 
 👤 **Henry**:
-- GitHub: [@Henry](https://github.com/Odongo006)
 
+- GitHub: [@Henry](https://github.com/Odongo006)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

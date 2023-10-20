@@ -37,7 +37,6 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
-    # @appointment = current_user.appointments.build(appointment_params)
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
@@ -64,13 +63,6 @@ class Api::V1::AppointmentsController < ApplicationController
     else
       render json: { data: 'Something went wrong', status: 'Failed' }
     end
-  end
-
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_appointment
-    @appointment = Appointment.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
